@@ -3,987 +3,362 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Syljie Canete | Personal Profile</title>
+  <title>Syljie Canete — Personal Profile</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
 
-  <!-- Bootstrap 5 -->
+  <!-- Bootstrap 5 (grid + utilities only) -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
 
-  <style>
-    /* ─── DESIGN TOKENS ─────────────────────────────────── */
-    :root {
-      --ink:      #1a1a2e;
-      --paper:    #f5f0e8;
-      --cream:    #ede8dc;
-      --accent:   #c0392b;
-      --gold:     #d4a843;
-      --muted:    #7a7464;
-      --serif:    'Playfair Display', Georgia, serif;
-      --sans:     'DM Sans', sans-serif;
-    }
-
-    /* ─── BASE ───────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background-color: var(--paper);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-weight: 300;
-      line-height: 1.75;
-      overflow-x: hidden;
-    }
-
-    /* ─── NOISE TEXTURE OVERLAY ─────────────────────────── */
-    body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* ─── TYPOGRAPHY ─────────────────────────────────────── */
-    h1, h2, h3, h4 { font-family: var(--serif); }
-
-    .section-label {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 0.5rem;
-    }
-
-    .section-title {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 5vw, 3.5rem);
-      line-height: 1.15;
-      color: var(--ink);
-    }
-
-    /* ─── NAVBAR ─────────────────────────────────────────── */
-    .navbar {
-      background-color: var(--ink) !important;
-      padding: 1rem 0;
-      border-bottom: 2px solid var(--accent);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .navbar-brand {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      color: var(--paper) !important;
-      letter-spacing: 0.02em;
-    }
-
-    .navbar-brand span {
-      color: var(--accent);
-    }
-
-    .navbar-toggler {
-      border-color: var(--muted);
-    }
-
-    .navbar-toggler-icon {
-      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28245,240,232,0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-    }
-
-    .nav-link {
-      font-family: var(--sans);
-      font-size: 0.82rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(245,240,232,0.7) !important;
-      padding: 0.4rem 1rem !important;
-      position: relative;
-      transition: color 0.25s;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 1rem;
-      right: 1rem;
-      height: 1px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transition: transform 0.25s;
-    }
-
-    .nav-link:hover { color: var(--paper) !important; }
-    .nav-link:hover::after { transform: scaleX(1); }
-
-    /* ─── HERO ───────────────────────────────────────────── */
-    #hero {
-      min-height: 92vh;
-      background-color: var(--ink);
-      position: relative;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    /* Decorative grid lines */
-    #hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(192,57,43,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(192,57,43,0.08) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
-
-    #hero::after {
-      content: '';
-      position: absolute;
-      right: -120px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 500px;
-      height: 500px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(192,57,43,0.18), transparent 70%);
-    }
-
-    .hero-eyebrow {
-      font-family: var(--sans);
-      font-size: 0.75rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      animation: fadeUp 0.8s ease both;
-    }
-
-    .hero-name {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 9vw, 7rem);
-      line-height: 1;
-      color: var(--paper);
-      animation: fadeUp 0.8s 0.15s ease both;
-    }
-
-    .hero-name em {
-      font-style: italic;
-      color: var(--accent);
-    }
-
-    .hero-subtitle {
-      font-size: 1rem;
-      color: rgba(245,240,232,0.55);
-      margin-top: 1.25rem;
-      max-width: 420px;
-      animation: fadeUp 0.8s 0.3s ease both;
-    }
-
-    .hero-divider {
-      width: 60px;
-      height: 2px;
-      background: var(--accent);
-      margin: 2rem 0;
-      animation: fadeUp 0.8s 0.45s ease both;
-    }
-
-    .hero-cta {
-      animation: fadeUp 0.8s 0.6s ease both;
-    }
-
-    .btn-primary-custom {
-      background: var(--accent);
-      border: none;
-      color: var(--paper);
-      font-family: var(--sans);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.85rem 2rem;
-      border-radius: 0;
-      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
-    }
-
-    .btn-primary-custom:hover {
-      background: #a93226;
-      color: var(--paper);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(192,57,43,0.35);
-    }
-
-    .btn-outline-custom {
-      background: transparent;
-      border: 1px solid rgba(245,240,232,0.3);
-      color: rgba(245,240,232,0.7);
-      font-family: var(--sans);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.85rem 2rem;
-      border-radius: 0;
-      transition: border-color 0.25s, color 0.25s;
-    }
-
-    .btn-outline-custom:hover {
-      border-color: var(--paper);
-      color: var(--paper);
-    }
-
-    .hero-scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(245,240,232,0.35);
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      animation: fadeUp 1s 1s ease both;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(245,240,232,0.35), transparent);
-      animation: scrollPulse 2s infinite;
-    }
-
-    /* ─── ABOUT SECTION ──────────────────────────────────── */
-    #about {
-      background-color: var(--paper);
-      padding: 7rem 0;
-    }
-
-    .about-image-wrap {
-      position: relative;
-    }
-
-    .about-image-wrap::before {
-      content: '';
-      position: absolute;
-      top: -16px;
-      left: -16px;
-      right: 16px;
-      bottom: 16px;
-      border: 2px solid var(--accent);
-      z-index: 0;
-    }
-
-    .about-img {
-      width: 100%;
-      aspect-ratio: 4/5;
-      object-fit: cover;
-      position: relative;
-      z-index: 1;
-      display: block;
-      filter: grayscale(20%) contrast(1.05);
-      transition: filter 0.4s;
-    }
-
-    .about-img:hover { filter: grayscale(0%) contrast(1); }
-
-    .about-img-placeholder {
-      width: 100%;
-      aspect-ratio: 4/5;
-      background: var(--cream);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 1rem;
-      position: relative;
-      z-index: 1;
-      border: 1px solid var(--cream);
-    }
-
-    .about-img-placeholder i {
-      font-size: 4rem;
-      color: var(--muted);
-      opacity: 0.4;
-    }
-
-    .about-img-placeholder span {
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-    }
-
-    .about-text { padding-left: 3rem; }
-
-    .about-text p { color: var(--muted); font-size: 1.05rem; }
-
-    .stat-row {
-      display: flex;
-      gap: 2.5rem;
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 1px solid var(--cream);
-    }
-
-    .stat-item { }
-    .stat-number {
-      font-family: var(--serif);
-      font-size: 2.5rem;
-      line-height: 1;
-      color: var(--ink);
-    }
-    .stat-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 0.25rem;
-    }
-
-    /* ─── HOBBIES SECTION ────────────────────────────────── */
-    #hobbies {
-      background-color: var(--ink);
-      padding: 7rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    #hobbies::before {
-      content: '"';
-      font-family: var(--serif);
-      font-size: 30rem;
-      color: rgba(255,255,255,0.02);
-      position: absolute;
-      top: -5rem;
-      right: -3rem;
-      line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    #hobbies .section-title { color: var(--paper); }
-
-    .hobby-card {
-      background: rgba(245,240,232,0.04);
-      border: 1px solid rgba(245,240,232,0.08);
-      padding: 2rem;
-      height: 100%;
-      transition: background 0.3s, border-color 0.3s, transform 0.3s;
-      cursor: default;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hobby-card::before {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.35s ease;
-    }
-
-    .hobby-card:hover {
-      background: rgba(245,240,232,0.07);
-      border-color: rgba(192,57,43,0.3);
-      transform: translateY(-4px);
-    }
-
-    .hobby-card:hover::before { transform: scaleX(1); }
-
-    .hobby-icon {
-      font-size: 2rem;
-      color: var(--gold);
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .hobby-title {
-      font-family: var(--serif);
-      font-size: 1.3rem;
-      color: var(--paper);
-      margin-bottom: 0.75rem;
-    }
-
-    .hobby-desc {
-      font-size: 0.9rem;
-      color: rgba(245,240,232,0.5);
-      margin: 0;
-    }
-
-    .hobby-num {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      font-family: var(--serif);
-      font-size: 3rem;
-      color: rgba(245,240,232,0.04);
-      line-height: 1;
-    }
-
-    /* ─── FUN FACT ───────────────────────────────────────── */
-    #funfact {
-      background-color: var(--cream);
-      padding: 7rem 0;
-    }
-
-    .fact-box {
-      background: var(--ink);
-      padding: 3.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .fact-box::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 120px;
-      height: 120px;
-      background: var(--accent);
-      clip-path: polygon(100% 0, 0 0, 100% 100%);
-    }
-
-    .fact-output {
-      font-family: var(--serif);
-      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-      color: var(--paper);
-      min-height: 3.5rem;
-      line-height: 1.5;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.4s, transform 0.4s;
-    }
-
-    .fact-output.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .fact-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 1.5rem;
-    }
-
-    .btn-fact {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--paper);
-      font-family: var(--sans);
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.8rem 1.75rem;
-      border-radius: 0;
-      margin-top: 2rem;
-      transition: background 0.25s, color 0.25s;
-    }
-
-    .btn-fact:hover {
-      background: var(--accent);
-      color: var(--paper);
-    }
-
-    /* ─── CONTACT ────────────────────────────────────────── */
-    #contact {
-      background-color: var(--paper);
-      padding: 7rem 0;
-    }
-
-    .contact-card {
-      background: var(--ink);
-      padding: 3rem;
-      height: 100%;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.25rem;
-      padding: 1.25rem 0;
-      border-bottom: 1px solid rgba(245,240,232,0.07);
-    }
-
-    .contact-item:last-child { border-bottom: none; }
-
-    .contact-icon {
-      width: 44px;
-      height: 44px;
-      border: 1px solid rgba(192,57,43,0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 1.1rem;
-      flex-shrink: 0;
-    }
-
-    .contact-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(245,240,232,0.35);
-      margin-bottom: 0.2rem;
-    }
-
-    .contact-value {
-      font-size: 0.95rem;
-      color: var(--paper);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .contact-value:hover { color: var(--gold); }
-
-    .social-row {
-      display: flex;
-      gap: 0.75rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .social-btn {
-      width: 44px;
-      height: 44px;
-      border: 1px solid rgba(245,240,232,0.12);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(245,240,232,0.5);
-      font-size: 1.1rem;
-      text-decoration: none;
-      transition: border-color 0.25s, color 0.25s, background 0.25s;
-    }
-
-    .social-btn:hover {
-      border-color: var(--accent);
-      color: var(--paper);
-      background: rgba(192,57,43,0.15);
-    }
-
-    .contact-quote {
-      background: var(--cream);
-      padding: 2.5rem;
-      border-left: 3px solid var(--accent);
-      margin-top: 0;
-    }
-
-    .contact-quote blockquote {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.3rem;
-      color: var(--ink);
-      margin: 0 0 1rem;
-      line-height: 1.5;
-    }
-
-    .contact-quote cite {
-      font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ─── FOOTER ─────────────────────────────────────────── */
-    footer {
-      background: var(--ink);
-      padding: 2rem 0;
-      border-top: 1px solid rgba(245,240,232,0.06);
-    }
-
-    footer p {
-      font-size: 0.78rem;
-      color: rgba(245,240,232,0.3);
-      letter-spacing: 0.1em;
-      margin: 0;
-    }
-
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    /* ─── ANIMATIONS ─────────────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.35; }
-      50%       { opacity: 0.9; }
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── RESPONSIVE ─────────────────────────────────────── */
-    @media (max-width: 768px) {
-      .about-text { padding-left: 0; margin-top: 3rem; }
-      .about-image-wrap::before { display: none; }
-      .stat-row { gap: 1.5rem; }
-      .fact-box { padding: 2rem; }
-      .contact-quote { margin-top: 1.5rem; }
-    }
-  </style>
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-  <!-- ░░░ NAVBAR ░░░ -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container">
-      <a class="navbar-brand" href="#hero">Syljie<span>.</span>Canete</a>
-      <button class="navbar-toggler" type="button"
-        data-bs-toggle="collapse" data-bs-target="#mainNav">
-        <span class="navbar-toggler-icon"></span>
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║  NAVBAR                              ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a class="navbar-brand" href="#hero">
+        Syljie Canete
+        <span class="counter">— 001</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav ms-auto gap-1">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#hobbies">Hobbies</a></li>
-          <li class="nav-item"><a class="nav-link" href="#funfact">Fun Fact</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#hobbies">Hobbies</a></li>
+        <li><a href="#funfact">Fun Fact</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
     </div>
   </nav>
 
-  <!-- ░░░ HERO ░░░ -->
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║  HERO                                ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
   <section id="hero">
-    <div class="container position-relative" style="z-index:1">
-      <div class="row">
-        <div class="col-lg-7">
-          <p class="hero-eyebrow">CMSC 207 — Personal Web Profile</p>
-          <h1 class="hero-name">Syljie<br/><em>Canete.</em></h1>
-          <p class="hero-subtitle">
-            Computer Science student, aspiring developer, and lifelong learner — crafting digital experiences one line at a time.
-          </p>
-          <div class="hero-divider"></div>
-          <div class="hero-cta d-flex gap-3 flex-wrap">
-            <a href="#about" class="btn btn-primary-custom">Learn More</a>
-            <a href="#contact" class="btn btn-outline-custom">Get in Touch</a>
-          </div>
+    <div class="hero-left">
+      <p class="hero-index">CMSC 207 Mini Project — Personal Web Profile / 2025</p>
+
+      <div>
+        <h1 class="hero-name">
+          Syljie
+          <span>Canete.</span>
+        </h1>
+        <p class="hero-subtitle">
+          MIS student and security analyst safeguarding the web while enjoying runs, pickleball matches, drinking matcha, and travel adventures. 🔐🏃‍♀️🏓🌍
+        </p>
+        <div class="hero-actions">
+          <a href="#about" class="btn-primary">Learn More</a>
+          <a href="#contact" class="btn-ghost">Get in Touch</a>
         </div>
       </div>
     </div>
-    <div class="hero-scroll-hint">
-      <div class="scroll-line"></div>
-      <span>Scroll</span>
+
+    <div class="hero-right">
+      <div class="hero-image"></div>
+      <span class="hero-caption">Metro Manila, Philippines</span>
     </div>
   </section>
 
-  <!-- ░░░ ABOUT ░░░ -->
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║  ABOUT                               ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
   <section id="about">
-    <div class="container">
-      <div class="row align-items-center g-5">
+    <div class="about-grid">
 
-        <!-- Image -->
-        <div class="col-lg-5 reveal">
-          <div class="about-image-wrap">
-            <!-- Replace src with your actual photo -->
-            <img src="my-photo.png" alt="Syljie Canete" class="about-img" />
+      <!-- Sidebar -->
+      <div class="about-sidebar reveal">
+        <div class="about-photo-wrap">
+          <!-- Replace with: <img src="my-photo.png" alt="Syljie Canete" class="about-photo"> -->
+          <div class="about-photo-placeholder">
+            <i class="bi bi-person-bounding-box"></i>
+            <span>Your Photo Here</span>
           </div>
         </div>
-
-        <!-- Text -->
-        <div class="col-lg-7 reveal">
-          <div class="about-text">
-            <span class="section-label">About Me</span>
-            <h2 class="section-title mb-4">Hello, I'm Syljie.</h2>
-            <p>
-              I'm a second-year Computer Science student with a passion for building elegant, 
-              functional software. Whether it's debugging a stubborn algorithm or designing 
-              a sleek user interface, I find joy in the creative problem-solving that programming 
-              demands every single day.
-            </p>
-            <p>
-              Originally from Manila, I bring a multicultural perspective to every project I 
-              tackle. Outside the classroom I'm constantly experimenting — with code, with 
-              cameras, and with coffee recipes. This page is a small window into who I am.
-            </p>
-            <div class="stat-row">
-              <div class="stat-item">
-                <div class="stat-number">2nd</div>
-                <div class="stat-label">Year</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-number">12+</div>
-                <div class="stat-label">Projects</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-number">3</div>
-                <div class="stat-label">Languages</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ░░░ HOBBIES ░░░ -->
-  <section id="hobbies">
-    <div class="container">
-      <div class="row mb-5 reveal">
-        <div class="col-lg-6">
-          <span class="section-label">What I Love</span>
-          <h2 class="section-title">Hobbies &amp;<br/>Interests</h2>
-        </div>
-        <div class="col-lg-6 d-flex align-items-end">
-          <p style="color:rgba(245,240,232,0.4); font-size:0.9rem; margin-bottom:0.25rem;">
-            Beyond academics, these are the things that keep me inspired, 
-            curious, and creative outside the terminal.
+        <div class="about-meta">
+          <p>
+            <strong>University</strong>
+            University of the Philippines
+          </p>
+          <p>
+            <strong>Program</strong>
+            Masters in Information Systems
+          </p>
+          <p>
+            <strong>Location</strong>
+            Metro Manila, PH
+          </p>
+          <p>
+            <strong>Email</strong>
+            syljie.canete@up.edu.ph
           </p>
         </div>
       </div>
 
-      <div class="row g-4">
+      <!-- Body -->
+      <div class="about-body reveal">
+        <span class="label">001 / About Me</span>
+        <h2>
+          Hello,<br/>I'm <em>Syljie.</em>
+        </h2>
 
-        <!-- Hobby 1 -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="hobby-card">
-            <span class="hobby-num">01</span>
-            <i class="bi bi-camera hobby-icon"></i>
-            <div class="hobby-title">Photography</div>
-            <p class="hobby-desc">
-              I love capturing fleeting moments — urban street scenes, golden-hour 
-              landscapes, and candid portraits. Photography teaches me to see the world 
-              with more intention and curiosity.
-            </p>
+        <p>
+          I'm a second-year Computer Science student with a passion for building elegant, 
+          functional software. Whether it's debugging a stubborn algorithm or designing 
+          a sleek user interface, I find joy in the creative problem-solving that programming 
+          demands every single day.
+        </p>
+        <p>
+          Originally from Manila, I bring a multicultural perspective to every project I tackle. 
+          Outside the classroom I'm constantly experimenting — with code, with cameras, and with 
+          coffee recipes. This page is a small window into who I am.
+        </p>
+
+        <div class="stat-grid">
+          <div class="stat-cell">
+            <div class="stat-num">2nd</div>
+            <div class="stat-lbl">Year</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">12+</div>
+            <div class="stat-lbl">Projects</div>
+          </div>
+          <div class="stat-cell">
+            <div class="stat-num">3</div>
+            <div class="stat-lbl">Languages</div>
           </div>
         </div>
-
-        <!-- Hobby 2 -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="hobby-card">
-            <span class="hobby-num">02</span>
-            <i class="bi bi-controller hobby-icon"></i>
-            <div class="hobby-title">Game Development</div>
-            <p class="hobby-desc">
-              I tinker with Unity and Godot in my spare time. Building small game 
-              prototypes sharpens my programming skills while indulging my love for 
-              interactive storytelling and world-building.
-            </p>
-          </div>
-        </div>
-
-        <!-- Hobby 3 -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="hobby-card">
-            <span class="hobby-num">03</span>
-            <i class="bi bi-book hobby-icon"></i>
-            <div class="hobby-title">Reading &amp; Writing</div>
-            <p class="hobby-desc">
-              From science fiction novels to technical blogs, reading fuels my 
-              imagination. I also keep a personal dev journal where I document 
-              learnings, experiments, and ideas.
-            </p>
-          </div>
-        </div>
-
-        <!-- Hobby 4 -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="hobby-card">
-            <span class="hobby-num">04</span>
-            <i class="bi bi-music-note-beamed hobby-icon"></i>
-            <div class="hobby-title">Music Production</div>
-            <p class="hobby-desc">
-              I experiment with lo-fi beats and ambient soundscapes using a DAW. 
-              There's something satisfying about the overlap between music theory 
-              and logical thinking in programming.
-            </p>
-          </div>
-        </div>
-
-        <!-- Hobby 5 -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="hobby-card">
-            <span class="hobby-num">05</span>
-            <i class="bi bi-bicycle hobby-icon"></i>
-            <div class="hobby-title">Cycling</div>
-            <p class="hobby-desc">
-              Weekend rides around the city clear my head and keep me energised. 
-              Cycling also feeds my love for exploring new neighbourhoods and 
-              discovering hidden cafés and side streets.
-            </p>
-          </div>
-        </div>
-
-        <!-- Hobby 6 -->
-        <div class="col-md-6 col-lg-4 reveal">
-          <div class="hobby-card">
-            <span class="hobby-num">06</span>
-            <i class="bi bi-terminal hobby-icon"></i>
-            <div class="hobby-title">Open Source</div>
-            <p class="hobby-desc">
-              Contributing to open-source projects teaches collaboration and 
-              real-world code review. I believe sharing knowledge freely is one 
-              of the best things the tech community does.
-            </p>
-          </div>
-        </div>
-
       </div>
+
     </div>
   </section>
 
-  <!-- ░░░ FUN FACT (JavaScript Interaction) ░░░ -->
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║  HOBBIES                             ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
+  <section id="hobbies">
+    <div class="hobbies-header reveal">
+      <div>
+        <span class="label">002 / Hobbies &amp; Interests</span>
+        <h2>What I Love</h2>
+      </div>
+      <p>Beyond academics — the things that keep me inspired, curious, and creative outside the terminal.</p>
+    </div>
+
+    <div class="hobby-grid reveal">
+
+      <!-- 01 Pickleball -->
+      <div class="hobby-item">
+        <img
+          class="hobby-img"
+          src="pickleball.png"
+          alt="Pickleball hobby"
+          loading="lazy"
+        />
+        <div class="hobby-info">
+          <div class="hobby-num-tag">01</div>
+          <div class="hobby-title">Pickleball</div>
+          <p class="hobby-desc">Playing pickleball keeps me active and competitive in a fun way. I enjoy the fast-paced rallies, friendly matches, and the energy of being on the court. 🏓</p>
+        </div>
+      </div>
+
+      <!-- 02 Running -->
+      <div class="hobby-item">
+        <img
+          class="hobby-img"
+          src="running.png"
+          alt="Running"
+          loading="lazy"
+        />
+        <div class="hobby-info">
+          <div class="hobby-num-tag">02</div>
+          <div class="hobby-title">Running</div>
+          <p class="hobby-desc">Running helps me clear my mind and stay energized. Whether it’s a quick jog or a longer run, it’s my favorite way to recharge and stay motivated. I’ve even joined 2 races in the 10km category! 🏃🏅</p>
+        </div>
+      </div>
+
+      <!-- 03 Matcha -->
+      <div class="hobby-item">
+        <img
+          class="hobby-img"
+          src="matcha.jpeg"
+          alt="Matcha hobby"
+          loading="lazy"
+        />
+        <div class="hobby-info">
+          <div class="hobby-num-tag">03</div>
+          <div class="hobby-title">Matcha</div>
+          <p class="hobby-desc">I’m a big matcha lover! From matcha lattes to matcha desserts, I enjoy the calm boost and cozy moments it brings to my day. 🍵</p>
+        </div>
+      </div>
+
+      <!-- 04 Travelling -->
+      <div class="hobby-item">
+        <img
+          class="hobby-img"
+          src="travel.png"
+          alt="Travelling hobby"
+          loading="lazy"
+        />
+        <div class="hobby-info">
+          <div class="hobby-num-tag">04</div>
+          <div class="hobby-title">Travelling</div>
+          <p class="hobby-desc">I love exploring new places, experiencing different cultures, and creating unforgettable memories wherever I go. Traveling always gives me something new to look forward to. ✈️🌍</p>
+        </div>
+      </div>
+
+      <!-- 05 Attending Concerts -->
+      <div class="hobby-item">
+        <img
+          class="hobby-img"
+          src="concert.png"
+          alt="Attending Concerts hobby"
+          loading="lazy"
+        />
+        <div class="hobby-info">
+          <div class="hobby-num-tag">05</div>
+          <div class="hobby-title">Attending Concerts</div>
+          <p class="hobby-desc">Concerts are one of my favorite experiences. The music, the crowd, and the energy make every show unforgettable. 🎤🎶</p>
+        </div>
+      </div>
+
+      <!-- 06 Watching Movies -->
+      <div class="hobby-item">
+        <img
+          class="hobby-img"
+          src="movies.png"
+          alt="Watching Movies hobby"
+          loading="lazy"
+        />
+        <div class="hobby-info">
+          <div class="hobby-num-tag">06</div>
+          <div class="hobby-title">Watching Movies</div>
+          <p class="hobby-desc">Watching movies is one of my favorite ways to relax. I love getting lost in great stories, especially films I can rewatch again and again. 🎬🍿</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║  FUN FACT                            ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
   <section id="funfact">
-    <div class="container">
-      <div class="row align-items-stretch g-4">
-        <div class="col-lg-6 reveal">
-          <div class="fact-box h-100 d-flex flex-direction-column">
-            <p class="fact-label">JavaScript Interaction</p>
-            <p class="fact-output" id="factOutput">
-              Press the button to reveal a fun fact about me ✦
-            </p>
-            <div class="mt-auto">
-              <button class="btn btn-fact" onclick="showFact()">
-                <i class="bi bi-shuffle me-2"></i>Reveal a Fun Fact
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-6 reveal">
-          <div class="p-5 h-100 d-flex flex-column justify-content-center"
-               style="background:var(--cream); border-left:3px solid var(--accent);">
-            <span class="section-label">A Little Extra</span>
-            <h2 class="section-title mb-3" style="font-size:clamp(1.8rem,4vw,2.8rem)">
-              Did you<br/>know?
-            </h2>
-            <p style="color:var(--muted); font-size:0.95rem;">
-              I've hidden a small Easter egg somewhere on this page. Click around — 
-              curious developers always find them. Each fun fact is drawn from a 
-              pool that resets every session.
-            </p>
-            <div class="mt-3">
-              <span id="factCounter" style="font-size:0.75rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--muted);">0 facts revealed so far</span>
-            </div>
-          </div>
-        </div>
+    <div class="funfact-wrap reveal">
+
+      <div class="funfact-left">
+        <span class="label" style="color:rgba(255,255,255,0.35)">003 / Fun Fact</span>
+        <p class="funfact-output" id="factOutput">
+          Press the button to reveal a fun fact about me.
+        </p>
+        <button class="funfact-btn" onclick="showFact()">
+          <i class="bi bi-arrow-clockwise me-2"></i> Reveal a Fact
+        </button>
       </div>
+
+      <div class="funfact-right">
+        <span class="label">Interactive Feature</span>
+        <h2>Did you<br/><em>know?</em></h2>
+        <p>
+          Each click draws from a pool of eight personal facts that reset every session. There's also 
+          a hidden Easter egg somewhere on this page — curious developers always find it.
+        </p>
+        <span id="factCounter">0 facts revealed so far</span>
+      </div>
+
     </div>
   </section>
 
-  <!-- ░░░ CONTACT ░░░ -->
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║  CONTACT                             ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
   <section id="contact">
-    <div class="container">
-      <div class="text-center mb-5 reveal">
-        <span class="section-label">Get in Touch</span>
-        <h2 class="section-title">Let's Connect</h2>
-      </div>
+    <div class="contact-header reveal">
+      <span class="label">004 / Contact</span>
+      <h2>Let's Connect</h2>
+    </div>
 
-      <div class="row g-4">
-        <div class="col-lg-5 reveal">
-          <div class="contact-card">
-            <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;">Contact Details</p>
+    <div class="contact-grid reveal">
 
-            <div class="contact-item">
-              <div class="contact-icon"><i class="bi bi-envelope"></i></div>
-              <div>
-                <div class="contact-label">Email</div>
-                <a href="mailto:sacanete@upou.edu.ph" class="contact-value">
-                  sacanete@upou.edu.ph
-                </a>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-icon"><i class="bi bi-geo-alt"></i></div>
-              <div>
-                <div class="contact-label">Location</div>
-                <span class="contact-value">Metro Manila, Philippines</span>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-icon"><i class="bi bi-mortarboard"></i></div>
-              <div>
-                <div class="contact-label">University</div>
-                <span class="contact-value">University of the Philippines</span>
-              </div>
-            </div>
-
-            <div class="contact-item">
-              <div class="contact-icon"><i class="bi bi-code-slash"></i></div>
-              <div>
-                <div class="contact-label">GitHub</div>
-                <a href="#" class="contact-value">github.com/syy-gif</a>
-              </div>
-            </div>
-
-            <p style="font-size:0.68rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(245,240,232,0.3);margin-top:2rem;margin-bottom:0.75rem;">Social Media</p>
-            <div class="social-row">
-              <a href="#" class="social-btn" title="GitHub"><i class="bi bi-github"></i></a>
-              <a href="#" class="social-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
-              <a href="#" class="social-btn" title="Twitter/X"><i class="bi bi-twitter-x"></i></a>
-              <a href="#" class="social-btn" title="Instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="social-btn" title="Dev.to"><i class="bi bi-filetype-tsx"></i></a>
-            </div>
+      <div class="contact-details">
+        <div class="contact-row">
+          <span class="contact-icon"><i class="bi bi-envelope"></i></span>
+          <div>
+            <div class="contact-lbl">Email</div>
+            <a href="mailto:syljie.canete@upou.edu.ph" class="contact-val">syljie.canete@upou.edu.ph</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon"><i class="bi bi-geo-alt"></i></span>
+          <div>
+            <div class="contact-lbl">Location</div>
+            <span class="contact-val">Metro Manila, Philippines</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon"><i class="bi bi-mortarboard"></i></span>
+          <div>
+            <div class="contact-lbl">University</div>
+            <span class="contact-val">University of the Philippines</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <span class="contact-icon"><i class="bi bi-code-slash"></i></span>
+          <div>
+            <div class="contact-lbl">GitHub</div>
+            <a href="#" class="contact-val">github.com/syy-gif</a>
           </div>
         </div>
 
-        <div class="col-lg-7 reveal d-flex flex-column gap-4">
-          <div class="contact-quote flex-fill d-flex flex-column justify-content-center">
-            <blockquote>
-              "Any sufficiently advanced technology is indistinguishable from magic — 
-              and I intend to keep learning until I can work a little magic myself."
-            </blockquote>
-            <cite>— Syljie Canete, CMSC 207</cite>
-          </div>
-
-          <div class="p-4" style="background:var(--ink);">
-            <p style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">Currently Open To</p>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="badge" style="background:rgba(192,57,43,0.2);color:var(--accent);border:1px solid rgba(192,57,43,0.3);font-size:0.72rem;letter-spacing:0.1em;font-weight:400;padding:0.5rem 0.9rem;border-radius:0;">Internships</span>
-              <span class="badge" style="background:rgba(192,57,43,0.2);color:var(--accent);border:1px solid rgba(192,57,43,0.3);font-size:0.72rem;letter-spacing:0.1em;font-weight:400;padding:0.5rem 0.9rem;border-radius:0;">Collaborations</span>
-              <span class="badge" style="background:rgba(192,57,43,0.2);color:var(--accent);border:1px solid rgba(192,57,43,0.3);font-size:0.72rem;letter-spacing:0.1em;font-weight:400;padding:0.5rem 0.9rem;border-radius:0;">Open Source</span>
-              <span class="badge" style="background:rgba(192,57,43,0.2);color:var(--accent);border:1px solid rgba(192,57,43,0.3);font-size:0.72rem;letter-spacing:0.1em;font-weight:400;padding:0.5rem 0.9rem;border-radius:0;">Freelance</span>
-            </div>
-          </div>
+        <div class="social-list">
+          <a href="#" class="social-link"><i class="bi bi-github"></i> GitHub</a>
+          <a href="#" class="social-link"><i class="bi bi-linkedin"></i> LinkedIn</a>
+          <a href="#" class="social-link"><i class="bi bi-twitter-x"></i> Twitter</a>
+          <a href="#" class="social-link"><i class="bi bi-instagram"></i> Instagram</a>
         </div>
       </div>
+
+      <div class="contact-quote-panel">
+        <div>
+		<a>
+		  Sharing to you my favorite group, Seventeen ‧₊˚💎✩ ₊˚.
+		</a>
+		<a></a>
+            <a href="https://www.youtube.com/watch?v=-GQg25oP0S4" target="_blank" rel="noopener noreferrer" style="display:block; position:relative;">
+			  <img 
+				src="https://img.youtube.com/vi/-GQg25oP0S4/hqdefault.jpg" 
+				alt="My Favorite Song" 
+				style="width:100%; height:220px; object-fit:cover;"
+			  />
+			  <span style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.7); color:white; padding:1rem 1.5rem; font-size:2rem; border-radius:50%;">▶</span>
+			</a>
+        </div>
+
+        
+      </div>
+
     </div>
   </section>
 
-  <!-- ░░░ FOOTER ░░░ -->
+  <!-- ╔══════════════════════════════════════╗ -->
+  <!-- ║  FOOTER                              ║ -->
+  <!-- ╚══════════════════════════════════════╝ -->
   <footer>
-    <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-      <p>© 2025 Syljie Canete · Built for CMSC 207 Mini-Project</p>
-      <p>Inspired by <a href="#">Create with Code</a> by Clyde Hatter</p>
+    <div class="footer-inner">
+      <p>© 2025 Syljie Canete · CMSC 207 Mini-Project</p>
+      <p>Inspired by <a href="#">Create with Code</a> — Clyde Hatter</p>
     </div>
   </footer>
 
@@ -991,26 +366,30 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
+    /* ── Mobile Nav ─────────────────────────────────────── */
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
     /* ── Fun Facts ─────────────────────────────────────── */
     const facts = [
-      "I wrote my first program at age 12 — a calculator in Python that only worked half the time. 🐍",
-      "My average coffee intake during finals week is around 4 cups per day. ☕",
-      "I can solve a 3×3 Rubik's Cube in under two minutes — and I'm still trying to break that record.",
-      "I've visited 7 provinces across the Philippines, each trip fuelled by a different local dish. 🍜",
-      "My first open-source pull request was a single-line typo fix — and I was terrified to submit it.",
-      "I have a playlist of 200+ lo-fi tracks that I built specifically for late-night coding sessions. 🎧",
-      "I once stayed up 36 hours straight during a hackathon. Our team placed second. Worth it.",
-      "I collect vintage tech — an old GameBoy, a broken typewriter, and a Polaroid camera sit on my desk.",
+      "I have a massive collection of K-pop albums, photocards, and merchandise—basically a mini K-pop museum at this point! 💿📸✨",
+	  "My first choice for college actually wasn’t technology, even though I ended up in the tech field. Life really had its own plans for me! 🎓🤯",
+	  "I can solve a 3×3 Rubik’s Cube in under two minutes—definitely not world-record speed, but still pretty cool! 🧩⏱️",
+	  "While most people in tech prefer dark mode, I proudly work in light mode… yes, I might be the alien of the tech world. 👽💻",
+	  "I absolutely love going to concerts! I’ve been to 16 concerts so far—and yes, I’m definitely keeping count. 🎤🎶",
+	  "I love rewatching the movie Titanic because it has a special place in my heart. 🚢💙",
+	  "I can binge-watch an entire 16-episode drama in one sitting if I really get hooked—snacks are a must, of course! 🍿📺",
+	  "I super duper love pink—if it’s pink, there’s a very high chance I already love it! 💗✨"
     ];
 
-    let revealCount = 0;
-    let lastIndex = -1;
+    let revealCount = 0, lastIndex = -1;
 
     function showFact() {
       let index;
       do { index = Math.floor(Math.random() * facts.length); } while (index === lastIndex);
       lastIndex = index;
-
       const el = document.getElementById('factOutput');
       el.classList.remove('visible');
       setTimeout(() => {
@@ -1018,33 +397,31 @@
         el.classList.add('visible');
         revealCount++;
         document.getElementById('factCounter').textContent =
-          revealCount + (revealCount === 1 ? ' fact' : ' facts') + ' revealed so far';
+          revealCount + (revealCount === 1 ? ' fact revealed so far' : ' facts revealed so far');
       }, 250);
     }
 
-    // Init
     document.getElementById('factOutput').classList.add('visible');
 
     /* ── Scroll Reveal ─────────────────────────────────── */
     const revealEls = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
+    const observer  = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('active'), i * 80);
+          setTimeout(() => entry.target.classList.add('active'), i * 100);
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
-
+    }, { threshold: 0.08 });
     revealEls.forEach(el => observer.observe(el));
 
     /* ── Easter Egg ─────────────────────────────────────── */
-    let clickCount = 0;
+    let clicks = 0;
     document.querySelector('.navbar-brand').addEventListener('click', () => {
-      clickCount++;
-      if (clickCount === 5) {
-        alert("🎉 You found it! You're the kind of developer who reads the source code. Respect.");
-        clickCount = 0;
+      clicks++;
+      if (clicks === 5) {
+        alert("You found it. You're exactly the kind of developer who reads source code carefully.");
+        clicks = 0;
       }
     });
   </script>
