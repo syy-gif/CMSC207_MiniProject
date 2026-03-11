@@ -421,25 +421,28 @@ a { color: inherit; text-decoration: none; }
 }
 
 .concert-strip {
-  display: flex;
+  display: flex !important;
+  flex-direction: row !important;
   gap: 1px;
   background: var(--rule);
   border: 1px solid var(--rule);
   margin-top: 2rem;
   overflow: hidden;
+  width: 100%;
 }
 
 .concert-item {
-  flex: 1;
+  flex: 1 1 0 !important;
+  min-width: 0;
   position: relative;
   overflow: hidden;
 }
 
 .concert-img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  display: block;
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  display: block !important;
   filter: grayscale(20%);
   transition: transform 0.5s ease, filter 0.5s ease;
 }
